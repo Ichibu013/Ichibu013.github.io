@@ -5,6 +5,9 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useState } from "react";
 import styles from "../styles/Header.module.css";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faEnvelope, faPhone } from "@fortawesome/free-solid-svg-icons"; // For solid icons
+import { faLinkedin, faGithub } from "@fortawesome/free-brands-svg-icons"; // For brand icons
 
 const Header = () => {
   const pathname = usePathname();
@@ -70,10 +73,26 @@ const Header = () => {
               }`}
             >
               <li>
-                <Link href="mailto:ansharma013@gmail.com">Email</Link>
+                <Link
+                  href="mailto:ansharma013@gmail.com"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <FontAwesomeIcon
+                    icon={faEnvelope}
+                    className={styles.dropdownIcon}
+                  />
+                  Email
+                </Link>
               </li>
               <li>
-                <Link href="tel:+918668866137">Phone</Link>
+                <Link href="tel:+918668866137">
+                  <FontAwesomeIcon
+                    icon={faPhone}
+                    className={styles.dropdownIcon}
+                  />
+                  Phone
+                </Link>
               </li>
               <li>
                 <Link
@@ -81,6 +100,10 @@ const Header = () => {
                   target="_blank"
                   rel="noopener noreferrer"
                 >
+                  <FontAwesomeIcon
+                    icon={faLinkedin}
+                    className={styles.dropdownIcon}
+                  />
                   LinkedIn
                 </Link>
               </li>
@@ -90,6 +113,10 @@ const Header = () => {
                   target="_blank"
                   rel="noopener noreferrer"
                 >
+                  <FontAwesomeIcon
+                    icon={faGithub}
+                    className={styles.dropdownIcon}
+                  />
                   GitHub
                 </Link>
               </li>
