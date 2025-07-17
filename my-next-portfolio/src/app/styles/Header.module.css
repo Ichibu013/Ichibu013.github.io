@@ -1,0 +1,228 @@
+/* Header.module.css */
+
+/* --- Existing Header and Nav Styles (No Changes to .nav ul gap) --- */
+.header {
+  background-color: #1a1e24;
+  color: #e0e0e0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 2rem;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+.logo a {
+  font-family: 'monospace', sans-serif;
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: #00bcd4;
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+.logo a:hover {
+  color: #00e5ff;
+}
+
+.nav ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  gap: 2rem; /* KEEP THIS GAP for spacing between main nav items */
+}
+
+.nav li a {
+  color: #e0e0e0;
+  text-decoration: none;
+  font-size: 1.1rem;
+  padding-bottom: 0.5rem;
+  position: relative;
+  transition: color 0.3s ease;
+}
+
+.nav li a:hover {
+  color: #ffffff;
+}
+
+.nav li .active {
+  color: #ffffff;
+}
+
+.nav li .active::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  height: 3px;
+  background-color: #00bcd4;
+  border-radius: 2px;
+  animation: expandUnderline 0.3s forwards;
+}
+
+@keyframes expandUnderline {
+  from {
+    transform: scaleX(0);
+  }
+  to {
+    transform: scaleX(1);
+  }
+}
+
+/* --- Dropdown Container (LI) Styles --- */
+.dropdown-container {
+  position: relative; /* Essential for positioning the dropdown menu */
+  margin-right: 2rem; /* Matches the gap of other nav items */
+  padding-bottom: 0;
+
+  /* Make the LI a flex container to precisely align its direct children */
+  display: flex;
+  justify-content: flex-start; /* Aligns the 'Contact' Link to the start of the LI */
+  align-items: center;
+}
+
+/* Style for the main 'Contact' link/trigger */
+.dropdown-container > a {
+  cursor: pointer;
+  padding-right: 0;
+  position: relative; /* CRITICAL: Position dropdown relative to this link */
+}
+
+/* --- Dropdown Menu (UL) Styles --- */
+.dropdown-menu {
+  display: flex;
+  flex-direction: column;
+  /* Aggressive reset for all box model properties */
+  gap: 0 !important; /* Force no gap. */
+  list-style: none;
+  margin: 0 !important; /* Force no margin */
+  padding: 0 !important; /* Force no padding */
+
+  position: absolute;
+  left: 50%; /* Align to the left edge of the parent *link* */
+  top: 100%; /* Position immediately below the parent link */
+  transform: translateX(-50%) translateY(10px); /* Initial slide down animation */
+
+  background-color: #2b303a;
+  border-radius: 5px;
+  min-width: 80px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+  z-index: 1000;
+
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s ease, visibility 0.3s ease, transform 0.3s ease;
+
+  /* For debugging: */
+  /* outline: 1px solid red; */
+}
+.dropdownIcon {
+  /* Basic icon styling */
+  /* KEY CHANGE: Increase margin-right to add more space */
+  margin-right: 1rem; /* Was 0.75rem, increased to 1rem. Adjust as needed! */
+  font-size: 1.2em; /* Adjust icon size relative to text */
+  /* If using SVGs/images: */
+  width: 1.2em; /* Ensure consistent width */
+  height: 1.2em; /* Ensure consistent height */
+  vertical-align: middle;
+  flex-shrink: 0;
+}
+
+/* Show dropdown when the .show class is applied by JavaScript */
+.dropdown-menu.show {
+  opacity: 1;
+  visibility: visible;
+  transform: translateX(-50%) translateY(10px); /* Slide up to final position */
+  transition: opacity 0.3s ease, visibility 0s linear, transform 0.3s ease;
+}
+
+/* --- Dropdown List Item (LI) Styles --- */
+.dropdown-menu li {
+  /* Make LI a flex container */
+  display: flex;
+  /* Ensure children (the <a>) stretch to fill the LI's height */
+  align-items: stretch;
+
+  /* Aggressive reset for all box model properties */
+  margin: 1px !important; /* Force no margin */
+  padding: 1px !important; /* Force no padding */
+
+  opacity: 0;
+  transform: translateY(10px);
+
+  /* For debugging: */
+  /* outline: 1px solid green; */
+}
+
+/* --- Dropdown Link (A) Styles --- */
+.dropdown-menu li a {
+  /* Flex-grow to fill available space within LI */
+  flex-grow: 1;
+  /* Make the <a> a flex container for its text content */
+  display: flex;
+  align-items: center; /* Vertically center the text within the link */
+  justify-content: flex-start; /* Align text to the start horizontally */
+
+  /* This padding now solely controls the visible height and internal spacing of each item */
+  padding: 0.5rem 1.5rem; /* Adjust this to control the vertical size of each link */
+  color: #e0e0e0;
+  text-decoration: none;
+  font-size: 1rem;
+  white-space: nowrap;
+  line-height: 1; /* Explicitly set line-height to 1 to remove extra vertical space from font */
+  transition: background-color 0.2s ease, color 0.2s ease;
+
+  /* For debugging: */
+  /* outline: 1px solid blue; */
+}
+
+.dropdown-menu li a:hover {
+  background-color: #3a414c;
+  color: #00bcd4;
+}
+
+/* Ensure active state doesn't apply to dropdown items accidentally */
+.dropdown-menu li a.active {
+    background-color: transparent;
+    color: #e0e0e0;
+    position: static;
+    padding-bottom: 0;
+}
+.dropdown-menu li a.active::after {
+    display: none;
+}
+
+/* --- Animation Keyframes (No Changes) --- */
+@keyframes slideInFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Apply animation to list items when dropdown is shown */
+.dropdown-menu.show li {
+  animation: slideInFadeIn 0.3s ease-out forwards;
+}
+
+/* Staggered animation delay for each list item */
+.dropdown-menu.show li:nth-child(1) {
+  animation-delay: 0.05s;
+}
+.dropdown-menu.show li:nth-child(2) {
+  animation-delay: 0.10s;
+}
+.dropdown-menu.show li:nth-child(3) {
+  animation-delay: 0.15s;
+}
+.dropdown-menu.show li:nth-child(4) {
+  animation-delay: 0.20s;
+}
+.dropdown-menu.show li:nth-child(5) {
+  animation-delay: 0.25s;
+}
