@@ -3,7 +3,14 @@ import React from "react";
 
 const SkillCard = ({ name, icon, proficiency, colorClass }) => {
   return (
-    <div className="flex flex-col items-center p-4 rounded-lg  transition-transform transform hover:scale-105 backdrop-blur-md shadow-skill-card bg-skill-card-bg">
+    <div
+      className="flex flex-col items-center p-4 rounded-lg  transition-transform transform hover:scale-105 backdrop-blur-md"
+      style={{
+        backgroundColor: "rgb(1 19 33/ 39%)",
+        boxShadow:
+          "0 10px 15px -3px rgb(3 76 133 / 100%), 0 4px 6px -4px rgb(0 188 212 / 100%)",
+      }}
+    >
       {/* Skill Icon Container */}
       <div className="w-20 h-20 mb-4 flex items-center justify-center ">
         {/* Conditional rendering based on the 'icon' prop type */}

@@ -4,6 +4,8 @@
   --background: #ffffff;
   --foreground: #171717;
 }
+/* Commented out CSS variables */
+/*
 
 @theme inline {
   --color-background: var(--background);
@@ -18,6 +20,7 @@
     --foreground: #ededed;
   }
 }
+*/
 
 body {
   background: var(--background);
@@ -29,4 +32,8 @@ body {
   background-repeat: no-repeat; /* Prevents repeating */
   background-attachment: scroll; /* Optional: Makes the background fixed while content scrolls */
   min-height: 100vh; /* Ensure body takes full viewport height */
+}
+
+.test-color {
+  color: red;
 }
